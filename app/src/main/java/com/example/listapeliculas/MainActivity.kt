@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
     fun initAdapter(){
         val peliculaAdapter = PeliculaAdpater()
         binding.recyclerPelicula.adapter = peliculaAdapter
-        //peliculaAdapter.peliculas = Pelicula.dataPelicula
+        peliculaAdapter.peliculas = Pelicula.dataPelicula
 
        /* sismoAdapter.onItemClickListener = {sismo ->
             //Toast.makeText(this,sismo.lugar, Toast.LENGTH_SHORT).show()
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
             enviarMensajeWhatsapp(sismo)
         }*/
 
-        peliculaAdapter.peliculas = Pelicula.dataEmpty
+        //peliculaAdapter.peliculas = Pelicula.dataEmpty
         if(peliculaAdapter.peliculas.isEmpty())
             binding.empty.visibility = View.VISIBLE
         else

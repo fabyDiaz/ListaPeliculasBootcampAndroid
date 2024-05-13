@@ -3,8 +3,10 @@ package com.example.listapeliculas.adapters
 import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.example.listapeliculas.Entities.Pelicula
 import com.example.listapeliculas.databinding.PeliculaItemBinding
@@ -47,14 +49,19 @@ class PeliculaAdpater: RecyclerView.Adapter<PeliculaAdpater.PeliculaViewHolder>(
     inner class PeliculaViewHolder(private var bindingItem: PeliculaItemBinding)
         : RecyclerView.ViewHolder(bindingItem.root){
 
+        val imagen =  bindingItem.ImgenPortada
+
             fun bind(pelicula: Pelicula){
+
+                Glide.with(bindingItem.listaPeliculas)
+                    .load(pelicula.URLimagen)
+                    .into(imagen)
+
                 with(pelicula){
-                    Glide.with(bindingItem.listaPeliculas)
-                        .load(pelicula.urlImagen)
-                        .into(bindingItem.ImgenPortada)
                     bindingItem.tituloOriginal.text = pelicula.titulo
                     bindingItem.anioPelicula.text = pelicula.anio.toString()
                     bindingItem.duracionPelicula.text = pelicula.duracion.toString()
+                    bindingItem.txtGenero.text = pelicula.genero
             }
             //Le da el click a todo, no solo a la flecha
             bindingItem.root.setOnClickListener{
